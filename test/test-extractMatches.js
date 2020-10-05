@@ -2,7 +2,6 @@ const test = require("ava");
 const patternPresent = require("../lib/spotPattern.js");
 const extractMatches = require("../lib/extractMatches.js");
 const validStrings = require("./inc/validStrings.js");
-const invalidStrings = require("./inc/invalidStrings.js");
 
 /**
  * ===========================================
