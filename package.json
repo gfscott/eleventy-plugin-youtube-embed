@@ -14,6 +14,11 @@
     "coverage": "coverage",
     "lint": "npx rome check"
   },
+  "ava": {
+    "files": [
+      "!test/inc"
+    ]
+  },
   "author": {
     "name": "Graham F. Scott",
     "email": "gfscott@gmail.com",
