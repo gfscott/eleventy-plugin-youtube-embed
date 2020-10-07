@@ -3,29 +3,7 @@ const {pluginDefaults} = require("../lib/pluginDefaults.js");
 const buildEmbed = require("../lib/buildEmbed.js");
 const extractMatches = require("../lib/extractMatches.js");
 const validStrings = require("./inc/validStrings.js");
-
-const expectedOutputs = [
-	{
-		name: 'default options',
-		output: '<div id="hIs5StN8J-0" class="eleventy-plugin-youtube-embed" style="position: relative; width: 100%; padding-top: 56.25%;"><iframe style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%;" frameborder="0" title="Embedded YouTube video" src="https://www.youtube-nocookie.com/embed/hIs5StN8J-0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
-		options: buildOptions(pluginDefaults),
-	},
-	{
-		name: 'custom allow attributes',
-		output: '<div id="hIs5StN8J-0" class="eleventy-plugin-youtube-embed" style="position: relative; width: 100%; padding-top: 56.25%;"><iframe style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%;" frameborder="0" title="Embedded YouTube video" src="https://www.youtube-nocookie.com/embed/hIs5StN8J-0" allow="custom allows" allowfullscreen></iframe></div>',
-		options: buildOptions({ allowAttrs: "custom allows"}),
-	},
-	{
-		name: 'custom aspect ratio',
-		output: '<div id="hIs5StN8J-0" class="eleventy-plugin-youtube-embed" style="position: relative; width: 100%; padding-top: 75%;"><iframe style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%;" frameborder="0" title="Embedded YouTube video" src="https://www.youtube-nocookie.com/embed/hIs5StN8J-0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
-		options: buildOptions({ aspectRatio: "4:3"}),
-	},
-	{
-		name: 'custom class',
-		output: '<div id="hIs5StN8J-0" class="custom" style="position: relative; width: 100%; padding-top: 56.25%;"><iframe style="position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%;" frameborder="0" title="Embedded YouTube video" src="https://www.youtube-nocookie.com/embed/hIs5StN8J-0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>',
-		options: buildOptions({ embedClass: "custom"}),
-	},
-]
+const expectedOutputs = require("./inc/expectedOutputs.js");
 
 /**
  * Test valid input strings with default output settings
@@ -38,7 +16,7 @@ for ( const valid of validStrings ) {
 			(t) => {
 				let idealCase = `<p>${valid.str}</p>`;
 				t.is(
-					buildEmbed(extractMatches(idealCase), expected.options),
+					buildEmbed(extractMatches(idealCase), buildOptions(expected.options)),
 					expected.output
 				);
 			},
@@ -48,7 +26,7 @@ for ( const valid of validStrings ) {
 			(t) => {
 				let withLinks = `<p><a href="">${valid.str}</a></p>`;
 				t.is(
-					buildEmbed(extractMatches(withLinks), expected.options),
+					buildEmbed(extractMatches(withLinks), buildOptions(expected.options)),
 					expected.output
 				);
 			},
@@ -60,7 +38,7 @@ for ( const valid of validStrings ) {
 				${valid.str}
 			</p>`;
 				t.is(
-					buildEmbed(extractMatches(withWhitespace), expected.options),
+					buildEmbed(extractMatches(withWhitespace), buildOptions(expected.options)),
 					expected.output
 				);
 			},
@@ -74,7 +52,7 @@ for ( const valid of validStrings ) {
 				</a>
 			</p>`;
 				t.is(
-					buildEmbed(extractMatches(withLinksAndWhitespace), expected.options),
+					buildEmbed(extractMatches(withLinksAndWhitespace), buildOptions(expected.options)),
 					expected.output
 				);
 			},
