@@ -9,15 +9,15 @@ const expectedOutputs = require("./inc/expectedOutputs.js");
  * Test valid input strings with default output settings
  */
 
-for ( const valid of validStrings ) {
-	for ( const expected of expectedOutputs ) {
+for (const valid of validStrings) {
+	for (const expected of expectedOutputs) {
 		test(
 			`${valid.type} ideal case, ${expected.name}`,
 			(t) => {
 				let idealCase = `<p>${valid.str}</p>`;
 				t.is(
 					buildEmbed(extractMatches(idealCase), buildOptions(expected.options)),
-					expected.output
+					expected.output,
 				);
 			},
 		);
@@ -27,7 +27,7 @@ for ( const valid of validStrings ) {
 				let withLinks = `<p><a href="">${valid.str}</a></p>`;
 				t.is(
 					buildEmbed(extractMatches(withLinks), buildOptions(expected.options)),
-					expected.output
+					expected.output,
 				);
 			},
 		);
@@ -38,8 +38,11 @@ for ( const valid of validStrings ) {
 				${valid.str}
 			</p>`;
 				t.is(
-					buildEmbed(extractMatches(withWhitespace), buildOptions(expected.options)),
-					expected.output
+					buildEmbed(
+						extractMatches(withWhitespace),
+						buildOptions(expected.options),
+					),
+					expected.output,
 				);
 			},
 		);
@@ -52,14 +55,16 @@ for ( const valid of validStrings ) {
 				</a>
 			</p>`;
 				t.is(
-					buildEmbed(extractMatches(withLinksAndWhitespace), buildOptions(expected.options)),
-					expected.output
+					buildEmbed(
+						extractMatches(withLinksAndWhitespace),
+						buildOptions(expected.options),
+					),
+					expected.output,
 				);
 			},
 		);
 	}
 }
-
 
 /**
  * Helper function: easier way to set options for testing
