@@ -59,7 +59,7 @@ test(
 );
 
 test(
-	"Spot autoplay, short form (“auto”)",
+	"Spot autoplay, short form ('auto')",
 	(t) => {
 		let str = "auto";
 		let expected = {
