@@ -2,11 +2,13 @@
 .gitignore
 
 # Ignore tests
-test.js
 test/
 
 # Ignore CI config
-.travis.yml
+.github/
+
+# Ignore linter config
+.config/
 
 # Ignore coverage files is redundant with gitignore, but just in case
 .nyc_output
