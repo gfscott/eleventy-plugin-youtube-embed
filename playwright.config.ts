@@ -99,7 +99,7 @@ const config: PlaywrightTestConfig = {
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npx --yes @11ty/eleventy --input=test/e2e/testsite --serve --port=3000',
+    command: 'npx @11ty/eleventy --input=test/e2e/testsite --port=3000 --serve',
     port: 3000,
   },
 };
