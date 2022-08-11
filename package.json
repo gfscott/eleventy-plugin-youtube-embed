@@ -10,7 +10,8 @@
   ],
   "main": ".eleventy.js",
   "scripts": {
-    "test": "nyc --reporter=lcov ava"
+    "test": "nyc --reporter=lcov ava",
+    "playwright": "npx playwright test"
   },
   "ava": {
     "files": [
