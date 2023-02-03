@@ -36,7 +36,7 @@
     "nyc": "^15.1.0"
   },
   "dependencies": {
-    "deepmerge": "^4.2.2",
+    "deepmerge": "^4.3.0",
     "lite-youtube-embed": "^0.2.0"
   }
 }
